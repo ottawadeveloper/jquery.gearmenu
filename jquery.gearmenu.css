@@ -1,0 +1,88 @@
+.gearmenu-element--menu-activator {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+.gearmenu-element--menu,
+.gearmenu-element--menu ul,
+.gearmenu-element--menu li {
+  box-sizing: border-box;
+  font-family: Calibri, sans-serif;
+}
+.gearmenu-element--menu,
+.gearmenu-element--menu ul {
+  background-color: #E5E5E5;
+  border: 1px solid #999;
+  color: #222;
+  padding: 0;
+  margin: 0;
+  width: 200px;
+  position: absolute;
+}
+.gearmenu-element--menu {
+  display: none;
+  box-shadow: 0px 0px 25px #888;
+}
+.gearmenu-js--slideout-left.gearmenu-element--menu ul {
+  top: 0;
+  left: -200px;
+}
+.gearmenu-js--slideout-right.gearmenu-element--menu ul {
+  top: 0;
+  left: 198px;
+}
+.gearmenu-element--menu li {
+  list-style: none;
+  background: none;
+  padding: 6px 16px;
+  margin: 0;
+  cursor: pointer;
+  position: relative;
+  font-size: 14px;
+}
+.gearmenu-element--menu li:hover {
+  background-color: #E09010;
+}
+.gearmenu-element--menu li > ul {
+  display: none;
+}
+.gearmenu-element--menu li:hover > ul {
+  display: block;
+}
+.gearmenu-js--gearmenu-enabled {
+  display: none;
+}
+.gearmenu-js--contains-gear-menu {
+  position: relative;
+}
+.gearmenu-js--is-active {
+  
+}
+.gearmenu-js--slideout-left.gearmenu-element--menu li.gearmenu-style--has-children {
+  background-image: url('images/arrow-left.png');
+  background-size: auto 8px;
+  background-position: 2% 50%;
+  background-repeat: no-repeat;
+}
+.gearmenu-js--slideout-right.gearmenu-element--menu li.gearmenu-style--has-children {
+  background-image: url('images/arrow-right.png');
+  background-size: auto 8px;
+  background-position: 98% 50%;
+  background-repeat: no-repeat;
+}
+.gearmenu-style--disabled {
+  color: #999;
+}
+.gearmenu-element--menu li.gearmenu-style--disabled:hover {
+  background-color: transparent;
+}
+.gearmenu-style--menu-activator-icon--default {
+  width: 16px;
+  height: 16px;
+}
+.gearmenu-element--icon {
+  width: 12px;
+  height: 12px;
+  padding-right: 4px;
+}
