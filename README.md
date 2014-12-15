@@ -30,13 +30,13 @@ change the gear image used:
 
 ```javascript
 // Change the path to the gear icon.
-GearMenu.defaultGearPath: '/jquery.gearmenu/images/os-gear.png';
+GearMenu.defaultGearPath = '/jquery.gearmenu/images/os-gear.png';
   
 // Change the default class used to control the size of the gear.
-GearMenu.defaultGearClass: 'gearmenu-style--menu-activator-icon--default';
+GearMenu.defaultGearClass = 'gearmenu-style--menu-activator-icon--default';
 
 // Change the alt text for the gear icon.
-GearMenu.defaultGearAltText: 'Context menu',
+GearMenu.defaultGearAltText = 'Context menu',
 ```
 
 In addition, you can override the path, class and alt text using data-* style 
@@ -56,7 +56,7 @@ Here's an example of how you might use this plugin:
   <head> 
     <title>jQuery GearMenu Example</title> 
     <link rel='stylesheet' type='text/css' href='/jquery.gearmenu/jquery.gearmenu.css' />
-    <script type="text/javascript" src="/misc/jquery.js"></script>
+    <script type="text/javascript" src="/jquery.js"></script>
     <script type="text/javascript" src="/jquery.gearmenu/jquery.gearmenu.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
