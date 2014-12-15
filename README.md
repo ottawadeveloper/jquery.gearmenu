@@ -56,7 +56,7 @@ Here's an example of how you might use this plugin:
   <head> 
     <title>jQuery GearMenu Example</title> 
     <link rel='stylesheet' type='text/css' href='/jquery.gearmenu/jquery.gearmenu.css' />
-    <script type="text/javascript" src="/jquery.js"></script>
+    <script type="text/javascript" src="/misc/jquery.js"></script>
     <script type="text/javascript" src="/jquery.gearmenu/jquery.gearmenu.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
@@ -69,11 +69,11 @@ Here's an example of how you might use this plugin:
       <p>Your content goes here</p>
     </div>
     <menu type="context" id="my-menu">
-      <menuitem label="GitHub" onclick="window.location='http://github.com/ottawadeveloper';" />
-      <menu type="context" label="Social Media">
-        <menuitem label="Google Plus" onclick="window.location='http://plus.google.com';" />
-        <menuitem label="Reddit" onclick="window.location='http://reddit.com';" icon="/my-icons/reddit.png" />
-        <menuitem label="Facebook" onclick="window.location='http://facebook.com';" />
+      <menuitem label="GitHub" onclick="window.location='http://github.com/ottawadeveloper';"></menuitem>
+      <menu label="Social Media" icon='/my-icons/social-media.png'>
+        <menuitem label="Google Plus" onclick="window.location='http://plus.google.com';"></menuitem>
+        <menuitem label="Reddit" onclick="window.location='http://reddit.com';" icon="/my-icons/reddit.png"></menuitem>
+        <menuitem label="Facebook" onclick="window.location='http://facebook.com';"></menuitem>
       </menu>
     </menu>
   </body>

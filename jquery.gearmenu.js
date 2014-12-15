@@ -132,6 +132,10 @@ var GearMenu = {
     var menuHTML = '<li';
     menuHTML += ' class="gearmenu-style--has-children"';
     menuHTML += '>';
+    var icon = menu.attr('icon');
+    if (icon !== undefined && icon !== '') {
+      menuHTML += '<img src="' + icon + '" class="gearmenu-element--icon" /> ';
+    }
     menuHTML += menu.attr('label');
     menuHTML += '<ul>';
     return menuHTML;
