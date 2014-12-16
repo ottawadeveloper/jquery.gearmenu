@@ -1,4 +1,4 @@
-## jQuery GearMenu
+## jQuery GearMenu v. 1.0.0
 I fell in love with HTML5's context menu the moment I saw it. The only downside
 is that it's only supported in Firefox at the moment. Not liking the current
 polyfill (which replaces the right-click context menu, instead of supplementing

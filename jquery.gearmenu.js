@@ -6,10 +6,13 @@ var GearMenu = {
   
   defaultGearAltText: 'Context menu',
   
-  generateGearMenu: function(menuID) {
+  generateGearMenu: function(menuID, forList) {
     var gearMenuActivatorHTML = '<div';
-    gearMenuActivatorHTML += ' data-menu-target-id="' + menuID + '"';
+    gearMenuActivatorHTML += ' data-gearmenu-target-id="' + menuID + '"';
     gearMenuActivatorHTML += ' class="gearmenu-element--menu-activator"';
+    if (forList) {
+      gearMenuActivatorHTML += ' data-gearmenu-from-list="data-gearmenu-from-list"';
+    }
     gearMenuActivatorHTML += '>';
     var gearPath = GearMenu.defaultGearPath;
     var overrideGearPath = $('#' + menuID).attr('data-gearmenu-gear-path');
@@ -35,7 +38,12 @@ var GearMenu = {
   },
 
   applyGearMenuItem: function(menuContainer, menuID) {
-    menuContainer.append(GearMenu.generateGearMenu(menuID));
+    menuContainer.append(GearMenu.generateGearMenu(menuID, false));
+    menuContainer.addClass('gearmenu-js--contains-gear-menu');
+  },
+  
+  applyGearMenuItemFromList: function(menuContainer, menuID) {
+    menuContainer.append(GearMenu.generateGearMenu(menuID, true));
     menuContainer.addClass('gearmenu-js--contains-gear-menu');
   },
   
@@ -51,15 +59,32 @@ var GearMenu = {
   },
 
   showGearMenu: function(activator) {
-    var menuID = activator.attr('data-menu-target-id');
-    var actualMenuID = 'gear_menu_' + menuID;
-    GearMenu.ensureGearMenuExists(menuID, actualMenuID);
+    var menuID = activator.attr('data-gearmenu-target-id');
+    var fromList = activator.attr('data-gearmenu-from-list') === 'data-gearmenu-from-list';
+    var actualMenuID = '';
+    if (fromList) {
+      actualMenuID = menuID;
+      GearMenu.classifyGearMenuFromList(menuID);
+    }
+    else {
+      var actualMenuID = 'gear_menu_' + menuID;
+      GearMenu.ensureGearMenuExists(menuID, actualMenuID);
+    }
     var menu = jQuery('#' + actualMenuID);
     jQuery('#' + actualMenuID).css({
        top: (activator.position().top + activator.outerHeight()) + 'px',
        left: (activator.position().left - menu.outerWidth() + activator.outerWidth()) + 'px',
        display: 'block',
     }).addClass('gearmenu-js--is-active').addClass(GearMenu.determineSlideDirection(activator));
+  },
+  
+  classifyGearMenuFromList: function(listMenuID) {
+    jQuery('#' + listMenuID).addClass('gearmenu-element--menu');
+    jQuery('#' + listMenuID + ' li').each(function() {
+      if ($(this).find('ul, ol, dl, .gearmenu-element--list-menu').length > 0) {
+        $(this).addClass('gearmenu-style--has-children');
+      }
+    });
   },
 
   closeGearMenus: function() {
@@ -181,17 +206,26 @@ var GearMenu = {
 (function($) {
  
   $.gearMenuize = function() {
-    $('menu').gearMenuize();
+    $('menu, .gearmenu-element--list-menu').gearMenuize();
   };
   
   $.fn.gearMenuize = function() {
     $(this).each(function() {
-      if ($(this).parents('menu').length === 0) {
-        var menuID = $(this).attr('id');
-        $('[contextmenu="' + menuID + '"]').each(function() {
-          GearMenu.applyGearMenuItem($(this), menuID);
+      if (this.tagName.toLowerCase() === 'menu') {
+        if ($(this).parents('menu').length === 0) {
+          var menuID = $(this).attr('id');
+          $('[contextmenu="' + menuID + '"]').each(function() {
+            GearMenu.applyGearMenuItem($(this), menuID);
+          });
+          $('#' + menuID).addClass('gearmenu-js--gearmenu-enabled');
+        }
+      }
+      else {
+        var listID = $(this).attr('id');
+        $('[data-list-contextmenu="' + listID + '"]').each(function() {
+          GearMenu.applyGearMenuItemFromList($(this), listID);
         });
-        $('#' + menuID).addClass('gearmenu-js--gearmenu-enabled');
+        $('#' + listID).addClass('gearmenu-js--gearmenu-enabled');
       }
     });
   };

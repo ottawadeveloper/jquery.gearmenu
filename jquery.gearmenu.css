@@ -32,6 +32,10 @@
   top: 0;
   left: 198px;
 }
+.gearmenu-element--menu li a {
+  color: #222;
+  text-decoration: none;
+}
 .gearmenu-element--menu li {
   list-style: none;
   background: none;
